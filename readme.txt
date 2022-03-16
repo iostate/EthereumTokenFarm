@@ -18,3 +18,35 @@ Dependencies:
 Goal:
 Transfer all DappTokens to TokenFarm.
 Investor account will be given 100 DaiTokens. 
+
+Key Takeaways:
+- web3.utils is a huge library. 
+  - web3.utils.toWei() && web3.utils.fromWei() both use 'ether' as default unit 
+  (After deployment) 
+Initialize your accounts variable using:
+- `truffle console`
+- `accounts = await web3.eth.getAccounts()`
+- investorAccount = accounts[1]
+
+Initialize a certain deployed token using:
+- `mDai = await DaiToken.deployed()`
+
+Get the balance of a certain token for an account using, e.g. the investor account:
+- `mDai.balanceOf(accounts[1])` 
+  
+  
+  
+Testing (standard JS testing frameworks)
+- Mocha
+- Chai
+
+Chai Library Helpful Functions 
+
+- should
+- should.be
+- should.equal
+
+- expect
+- expect.to.be
+- expect.to.be.equal
+- expect.to.have.lengthOf
