@@ -11,7 +11,7 @@ Users will get DappTokens for their DaiTokens.
 The users will then be able to stake their DappTokens in the TokenFarm.
 
 Dependencies: 
-- Ganache
+- Ganache 
 - Truffle
 - Node 12.18.3 (recommend using NVM for this)
 
