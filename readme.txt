@@ -35,18 +35,7 @@ Get the balance of a certain token for an account using, e.g. the investor accou
 - `mDai.balanceOf(accounts[1])` 
   
   
-  
-Testing (standard JS testing frameworks)
-- Mocha
-- Chai
-
-Chai Library Helpful Functions 
-
-- should
-- should.be
-- should.equal
-
-- expect
-- expect.to.be
-- expect.to.be.equal
-- expect.to.have.lengthOf
+Testing the following (test/TokenFarm.test.js):
+- Staking tokens from the Token Farm
+- Unstaking tokens from the Token Farm
+- Issuing tokens to all holders of the DAI Token
