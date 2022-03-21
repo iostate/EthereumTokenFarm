@@ -13,6 +13,7 @@ contract TokenFarm {
     address[] public stakers;
     mapping(address => uint256) public stakingBalance;
     mapping(address => bool) public hasStaked;
+    mapping(address => bool) public isStaking;
 
     // pass in addresses
     constructor(DappToken _dappToken, DaiToken _daiToken) public {
@@ -40,6 +41,7 @@ contract TokenFarm {
         }
 
         // Update staking status
+        isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
     }
     // 2. Unstaking Tokens (Withdraw)
