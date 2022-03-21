@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import farmer from '../farmer.png'
+import React, { Component } from "react";
+import farmer from "../farmer.png";
 
 class Navbar extends Component {
-
   render() {
     return (
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -19,7 +18,16 @@ class Navbar extends Component {
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
             <small className="text-secondary">
+              {`Account: `}
+              <br></br>
               <small id="account">{this.props.account}</small>
+            </small>
+          </li>
+          <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
+            <small className="text-secondary">
+              {`DaiTokenBalance: `}
+              <br></br>
+              <small id="account">{this.props.daiTokenBalance}</small>
             </small>
           </li>
         </ul>

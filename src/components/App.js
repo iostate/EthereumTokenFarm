@@ -1,3 +1,12 @@
+/**
+ * Front-end for our Token Farm.
+ *
+ * Token Farm will issue Dapp Tokens to all accounts that stake DAI Tokens.
+ * For every 1 DAI Token staked to Token Farm, 1 Dapp Token will be issued.
+ *
+ * The front-end is from the investor's perspective.
+ */
+
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import DaiToken from "../abis/DaiToken.json";
@@ -18,32 +27,29 @@ class App extends Component {
     const networkId = await web3.eth.net.getId();
     console.log(networkId);
 
-    // Fetch Token Address
-    // Gets the token address from the DaiToken.json network property.. 1337
+    // Accessing (DaiToken.json). Particularly the networks property.
     const daiTokenData = DaiToken.networks[networkId];
     console.log(daiTokenData);
     if (daiTokenData) {
-      // Check out web3.eth.Contract docs.. Load abi as param and token address
+      // Constructor parameters:
+      // web3.eth.Contract(tokenAbi, tokenAddress)
       const daiToken = new web3.eth.Contract(DaiToken.abi, daiTokenData.address);
 
-      // What is the token address?
       console.log(`DAI Token Address: ${daiTokenData.address}`);
-
-      this.setState({ daiToken }); // set App's state daiToken
-      // When querying, use call()
+      // set App's state daiToken
+      this.setState({ daiToken });
       // https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-call
       let daiTokenBalance = await daiToken.methods.balanceOf(this.state.account).call();
       this.setState({ daiTokenBalance: daiTokenBalance.toString() });
 
-      console.log(`DAI Token Balance for {this.state.account}: `);
+      console.log(`DAI Token Balance for {this.state.account} converted fromWei: `);
       console.log(web3.utils.fromWei(this.state.daiTokenBalance));
     } else {
       window.alert("DaiToken contract not deployed to detected network.");
     }
   }
 
-  // load web3
-  // added localhost:7545 to metamask
+  // Connect app to MetaMask with Web3
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
@@ -57,6 +63,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    // Contain all app data in the state
     this.state = {
       account: "0x0",
       daiToken: {},
@@ -72,7 +79,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar account={this.state.account} />
+        {/* Displays account address & Dai Token Balance */}
+        <Navbar account={this.state.account} daiTokenBalance={this.state.daiTokenBalance} />
         <div className="container-fluid mt-5">
           <div className="row">
             <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: "600px" }}>

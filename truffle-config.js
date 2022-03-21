@@ -20,4 +20,5 @@ module.exports = {
       evmVersion: "petersburg",
     },
   },
+  plugins: ["truffle-plugin-debugger"],
 };
